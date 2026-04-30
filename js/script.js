@@ -296,10 +296,10 @@ function buildPortfolioGrid() {
 
   // — Formations —
   const formations = [
-  { src: './assets/form1.jpg', title: 'JavaScript Avancé' },
-  { src: './assets/form2.jpg', title: 'React.js' },
-  { src: './assets/form3.jpg', title: 'Node.js & API REST' },
-  { src: './assets/form4.jpg', title: 'MySQL / BDD' },
+  { src: './assets/form1.jpg', title: 'Expert du web' },
+  { src: './assets/form2.jpg', title: 'Odoo' },
+  { src: './assets/form3.jpg', title: 'Entrepreneuriat & IA' },
+  { src: './assets/form4.jpg', title: 'Data Science' },
 ];
 
   const fg = document.getElementById('formationsGrid');
