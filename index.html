@@ -1,595 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cédric Christian NKOU ATEBA | Développeur Fullstack</title>
-
-<!-- Bootstrap 5 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Font Awesome -->
+<title>Cédric Christian NKOU ATEBA — System Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* VARIABLES */
-:root {
-    --main-color: #0d6efd;
-    --soft-bg-1: #f8f9fa;
-    --soft-bg-2: #eef2f7;
-    --soft-bg-3: #f3f6fb;
-    --glass-bg: rgba(255,255,255,0.15);
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    padding-top: 90px;
-    transition: background 0.4s ease, color 0.4s ease;
-}
-
-/* Sections couleurs */
-#home { background: var(--soft-bg-1); }
-.about { background: var(--soft-bg-2); }
-#services { background: var(--soft-bg-3); }
-#portfolio { background: var(--soft-bg-1); }
-#contact { background: var(--soft-bg-2); }
-
-/* ===== TITRES CORRIGÉS ===== */
-.section-title {
-    font-weight: 700;
-    font-size: 2.5rem;
-    color: var(--main-color); /* on enlève le gradient problématique */
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-/* Glass effect */
-.card {
-    backdrop-filter: blur(12px);
-    background: var(--glass-bg);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 15px;
-}
-
-/* Portfolio hover */
-.portfolio img {
-    transition: 0.4s ease;
-}
-
-.portfolio img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-}
-
-/* Color buttons */
-.color-btn {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    margin-left: 10px;
-    border: 2px solid white;
-    transition: 0.3s;
-}
-
-.color-btn:hover {
-    transform: scale(1.2);
-}
-
-/* ===== DARK MODE ===== */
-.dark-mode {
-    background-color: #0f172a;
-    color: #e2e8f0;
-}
-
-.dark-mode section {
-    background: #1e293b !important;
-}
-
-.dark-mode .card {
-    background: rgba(30,41,59,0.6);
-    color: white;
-}
-
-.dark-mode #services,
-.dark-mode #services h5,
-.dark-mode #services p {
-    color: white !important;
-}
-
-.dark-mode .section-title {
-    color: #ffffff;
-}
-
-/* ===== NAVBAR PREMIUM ===== */
-.premium-navbar {
-    background: rgba(15,23,42,0.9);
-    backdrop-filter: blur(15px);
-    padding: 15px 0;
-    z-index: 3000;
-}
-
-.premium-navbar .nav-link {
-    color: white;
-    font-weight: 500;
-    margin: 0 10px;
-    transition: 0.3s ease;
-}
-
-.premium-navbar .nav-link:hover {
-    color: var(--main-color);
-    transform: translateY(-2px);
-}
-
-/* ===== ANIMATION STABLE ===== */
-.hidden-section {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease;
-}
-
-.show-section {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-</style>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
-    <!-- MAIN START -->
-    <main class="main-container">
-    <!-- ASIDE START -->
-        <nav class="navbar navbar-expand-lg fixed-top premium-navbar">
-  <div class="container">
 
-    <!--<a class="navbar-brand fw-bold text-white" href="#">
-      Heutsy Dev
-    </a>-->
+<!-- MATRIX RAIN -->
+<canvas id="matrixCanvas"></canvas>
 
-    <div class="col-lg-3 text-center">
-        <img src="./images/1772080613286.png" class="img-fluid rounded shadow" width="100">
-    </div>
+<!-- NAVBAR -->
+<nav class="matrix-nav">
+  <div class="nav-logo">
+    <span>[</span>HEUTSY<span>]</span>&nbsp;::&nbsp;SYSTEM
+  </div>
+  <div class="nav-right">
+    <div class="status-dot"></div>
+    <select class="lang-select" id="langSelect">
+      <option value="fr">🌐 FR</option>
+      <option value="en">🌐 EN</option>
+      <option value="es">🌐 ES</option>
+      <option value="de">🌐 DE</option>
+      <option value="zh">🌐 中文</option>
+      <option value="ja">🌐 日本語</option>
+      <option value="ru">🌐 RU</option>
+    </select>
+  </div>
+</nav>
 
-    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<!-- MAIN -->
+<div class="main-wrapper">
 
-    <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+  <!-- HERO -->
+  <div class="hero-section">
+    <div class="hero-label" data-i18n="sys_label">// SYSTEM INITIALIZED //</div>
+    <div class="hero-name">Cédric Christian<br>NKOU ATEBA</div>
+    <div class="hero-title cursor" data-i18n="hero_title">Ingénieur Logiciel &amp; Développeur Fullstack</div>
+    <div class="hero-divider"></div>
+    <div class="boot-text" data-i18n="boot_msg">&gt; ACCESS GRANTED — SELECT MODULE TO INITIALIZE &lt;</div>
+  </div>
 
-      <!-- MENU -->
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="#home">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
+  <!-- CARDS -->
+  <div class="cards-section">
+    <div class="cards-grid">
 
-      <!-- CONTROLS -->
-      <div class="d-flex align-items-center">
+      <div class="holo-card" data-modal="modal-profil">
+        <div class="card-num">01</div>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+        <span class="card-icon">👤</span>
+        <div class="card-label" data-i18n="card_profil">PROFIL</div>
+      </div>
 
-        <button id="themeToggle" class="btn btn-sm btn-light me-3">
-          🌙
-        </button>
+      <div class="holo-card" data-modal="modal-skills">
+        <div class="card-num">02</div>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+        <span class="card-icon">⚡</span>
+        <div class="card-label" data-i18n="card_competences">COMPÉTENCES</div>
+      </div>
 
-        
-        <span class="color-btn" data-color="#DC3545" style="background:#DC3545;"></span>
-        <span class="color-btn" data-color="#4169E1" style="background:#4169E1;"></span>
-        <span class="color-btn" data-color="#A855F7" style="background:#A855F7;"></span>
-       
+      <div class="holo-card" data-modal="modal-services">
+        <div class="card-num">03</div>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+        <span class="card-icon">🛠</span>
+        <div class="card-label" data-i18n="card_services">SERVICES</div>
+      </div>
+
+      <div class="holo-card" data-modal="modal-portfolio">
+        <div class="card-num">04</div>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+        <span class="card-icon">🗂</span>
+        <div class="card-label" data-i18n="card_portfolio">PORTFOLIO</div>
+      </div>
+
+      <div class="holo-card" data-modal="modal-formations">
+        <div class="card-num">05</div>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+        <span class="card-icon">🎓</span>
+        <div class="card-label" data-i18n="card_formations">FORMATIONS</div>
+      </div>
+
+      <div class="holo-card" data-modal="modal-contact">
+        <div class="card-num">06</div>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+        <span class="card-icon">📡</span>
+        <div class="card-label" data-i18n="card_contact">CONTACT</div>
       </div>
 
     </div>
   </div>
-</nav>
-        <!-- ASIDE END -->
-        <!-- MAIN CONTENT START -->
-        <div class="main-content">
-            <!-- HOME SECTION START --> 
-            <section id="home" class="hero bg-light">
-<div class="container">
-<div class="row align-items-center">
-<div class="col-lg-6 text-center text-lg-start">
-<h1 class="fw-bold">Cédric Christian NKOU ATEBA</h1>
-<h3 class="text-primary mb-3">Ingénieur logiciel & Développeur Fullstack</h3>
 
-
+  <div class="matrix-footer">© 2026 CÉDRIC CHRISTIAN NKOU ATEBA — ALL SYSTEMS OPERATIONAL</div>
 </div>
 
-<div class="col-lg-6 text-center">
-<img src="./images/pp.jpg" class="img-fluid rounded shadow" width="400">
-</div>
-</div>
-</div>
-</section><br><br>
-            <!-- HOME SECTION END -->
+<!-- ======================= MODALS ======================= -->
 
-            <!-- ABOUT SECTION START -->
-            <section class="about section">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title padd-15">
-                            <h2 class="section-title">A propos de moi</h2>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="about-content padd-15">
-                            <div class="row">
-                                <div class="about-text padd-15">
-                                    
-                                    <p>
-                                        Ingénieur logiciel orienté Développement Fullstack, spécialisé en architecture d’API REST et modélisation de bases de données relationnelles. Expertise Node.js, React.js, progression active sur ASP.NET Core. Focus performance, sécurité et qualité du code.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="personal-info padd-15">
-                                    <div class="row">
-                                        <p>
-                                            Je suis actif sur plusieurs réseaux sociaux, notamment :
-                                        
-                                        
-                                        <div class="info-item padd-15">
-                                            <p>LinkedIn : <span>Cédric Christian Nkou Ateba</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Facebook : <span>Cédric Christian Nkou Ateba</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>E-mail : <span>christian.nkouateba@gmail.com</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Cloud : <span>https://www.github.com/Heustino</span></p>
-                                        </div>
-                                        <!-- <div class="info-item padd-15">
-                                            <p>Degree: <span>DUT in CS</span></p>
-                                        </div> -->
-                                        <div class="info-item padd-15">
-                                            <p>Téléphone & WhatsApp : <span>(+237) 690 634 101 / 653 367 178</span></p>
-                                        </div>
-                                        <div class="info-item padd-15">
-                                            <p>Pays : <span>Cameroun</span></p>
-                                        </div></p>
-                                    </div>
-                                    
-                                </div><br>
-
-                                <div class="section-title padd-15">
-                                    <h2 class="section-title">Mes compétences techniques</h2>
-                                </div>
-                                <h3 class="title">Langages</h3>
-                                <div class="skills padd-15">
-                                    <div class="row">
-                                        <div class="skill-item padd-15">
-                                            <ul>
-                                                <li><h5>JavaScript</h5></li>
-                                                <li><h5>SQL</h5></li>
-                                                <li><h5>Python</h5></li>
-                                                <li><h5>C# (en progression active)</h5></li>    
-                                            </ul>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 class="title">Front-end</h3>
-                                <div class="skills padd-15">
-                                    <div class="row">
-                                        <div class="skill-item padd-15">
-                                            <ul>
-                                                <li><h5>React.js</h5></li>
-                                                <li><h5>HTML5 / CSS3</h5></li>
-                                                <li><h5>Bootstrap</h5></li>    
-                                            </ul>    
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 class="title">Backend</h3>
-                                <div class="skills padd-15">
-                                    <div class="row">
-                                        <div class="skill-item padd-15">
-                                            <ul>
-                                                <li><h5>Node.js</h5></li>
-                                                <li><h5>API REST</h5></li>   
-                                            </ul>    
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 class="title">Bases de données</h3>
-                                <div class="skills padd-15">
-                                    <div class="row">
-                                        <div class="skill-item padd-15">
-                                            <ul>
-                                                <li><h5>MySQL</h5></li>
-                                                <li><h5>Modélisation relationnelle</h5></li>   
-                                            </ul>    
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 class="title">Outils & Méthodes</h3>
-                                <div class="skills padd-15">
-                                    <div class="row">
-                                        <div class="skill-item padd-15">
-                                            <ul>
-                                                <li><h5>Git / Github</h5></li>
-                                                <li><h5>Visual Studio Code</h5></li>
-                                                <li><h5>Wamp Server</h5></li>
-                                                <li><h5>Wordpress</h5></li>    
-                                                <li><h5>Débogage & optimisation</h5></li>  
-                                            </ul>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br><br>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- ABOUT SECTION END -->
-
-            <!-- SERVICE SECTION START -->
-            <section id="services" class="section-padding">
-<div class="container">
-<h2 class="section-title">Mes Services</h2>
-<div class="row g-4">
-
-<div class="col-md-6 col-lg-4">
-<div class="card h-100 text-center shadow-sm p-4">
-<i class="fa fa-laptop-code fa-2x text-primary mb-3"></i>
-<h5>Data management</h5>
-<p>Webscraping & management des données</p>
-</div>
+<!-- MODAL PROFIL -->
+<div class="modal-overlay" id="modal-profil">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title"><span class="modal-title-icon">👤</span> <span data-i18n="card_profil">PROFIL</span></div>
+      <button class="modal-close" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="profile-avatar">
+        <img src="./assets/pp.jpg" alt="Cédric Christian NKOU ATEBA"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fa fa-user\'></i>';">
+      </div>
+      <h3 data-i18n="about_title">À PROPOS</h3>
+      <p data-i18n="about_text">Ingénieur logiciel orienté Développement Fullstack, spécialisé en architecture d'API REST et modélisation de bases de données relationnelles. Expertise Node.js, React.js, progression active sur ASP.NET Core. Focus performance, sécurité et qualité du code.</p>
+      <h3 data-i18n="info_title">INFORMATIONS</h3>
+      <div class="info-row"><span class="info-label">LinkedIn</span><span class="info-val"><a href="https://linkedin.com" target="_blank">Cédric Christian Nkou Ateba</a></span></div>
+      <div class="info-row"><span class="info-label">Facebook</span><span class="info-val"><a href="https://facebook.com" target="_blank">Cédric Christian Nkou Ateba</a></span></div>
+      <div class="info-row"><span class="info-label">E-mail</span><span class="info-val"><a href="mailto:christian.nkouateba@gmail.com">christian.nkouateba@gmail.com</a></span></div>
+      <div class="info-row"><span class="info-label">GitHub</span><span class="info-val"><a href="https://github.com/Heustino" target="_blank">github.com/Heustino</a></span></div>
+      <div class="info-row"><span class="info-label" data-i18n="lbl_phone">Téléphone</span><span class="info-val">+237 690 634 101 / 653 367 178</span></div>
+      <div class="info-row"><span class="info-label" data-i18n="lbl_country">Pays</span><span class="info-val">🇨🇲 Cameroun</span></div>
+    </div>
+  </div>
 </div>
 
-<div class="col-md-6 col-lg-4">
-<div class="card h-100 text-center shadow-sm p-4">
-<i class="fa fa-mobile-alt fa-2x text-primary mb-3"></i>
-<h5>Analyse</h5>
-<p>Utilisation de MERISE & UML 2.0</p>
-</div>
-</div>
-
-<div class="col-md-6 col-lg-4">
-<div class="card h-100 text-center shadow-sm p-4">
-<i class="fa fa-code fa-2x text-primary mb-3"></i>
-<h5>Développement web</h5>
-<p>Création de sites web et applications mobiles modernes et sur mesure.</p>
-</div>
-</div>
-
-</div>
-</div>
-</section><br>
-            <!-- SERVICE SECTION END -->
-
-            <!-- PORTFOLIO SECTION START -->
-            <section id="portfolio" class="portfolio section-padding bg-light">
-<div class="container">
-<h2 class="section-title">Mes projets</h2>
-<div class="row g-4">
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/1.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/2.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/3.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/4.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/5.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/6.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/7.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/8.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/9.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/10.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/11.PNG" class="img-fluid rounded shadow">
-</div>
-
-<div class="col-sm-6 col-md-4 col-lg-3">
-<img src="./images/portfolio/12.PNG" class="img-fluid rounded shadow">
-</div>
-
-</div>
-</div>
-</section><br>
-            <!-- PORTFOLIO SECTION END -->
-
-            <section id="portfolio" class="portfolio section-padding bg-light">
-                <div class="container">
-                    <h2 class="section-title">Pack formations vidéos & pdf</h2>
-                    <div class="row g-4">
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="./images/a.png" class="img-fluid rounded shadow">
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="./images/b.png" class="img-fluid rounded shadow">
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="./images/c.png" class="img-fluid rounded shadow">
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="./images/d.png" class="img-fluid rounded shadow">
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="./images/e.png" class="img-fluid rounded shadow">
-                        </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <img src="./images/f.jpg" class="img-fluid rounded shadow">
-                        </div>
-                    </div>
-                </div>
-            </section><br>
-
-            <!-- CONTACT SECTION START -->
-            <section id="contact" class="section-padding">
-<div class="container">
-<h2 class="section-title">Contactez-moi</h2>
-
-<div class="row g-4">
-
-<!-- EMAIL -->
-<div class="col-lg-6">
-<div class="card p-4 shadow-sm h-100">
-<h5 class="mb-3">Envoyer un Email</h5>
-
-<form action="mailto:christian.nkouateba@gmail.com" method="post" enctype="text/plain">
-<div class="mb-3">
-<input type="text" name="Nom" class="form-control" placeholder="Votre nom" required>
-</div>
-
-<div class="mb-3">
-<textarea name="Message" class="form-control" rows="4" placeholder="Votre message" required></textarea>
-</div>
-
-<button type="submit" class="btn btn-primary w-100">
-Envoyer par Email
-</button>
-</form>
-
-</div>
-</div>
-
-<!-- WHATSAPP -->
-<div class="col-lg-6">
-<div class="card p-4 shadow-sm h-100">
-<h5 class="mb-3">Envoyer un message WhatsApp</h5>
-
-<form onsubmit="sendWhatsApp(event)">
-<div class="mb-3">
-<input type="text" id="wa_name" class="form-control" placeholder="Votre nom" required>
-</div>
-
-<div class="mb-3">
-<textarea id="wa_message" class="form-control" rows="4" placeholder="Votre message" required></textarea>
-</div>
-
-<button type="submit" class="btn btn-success w-100">
-Envoyer sur WhatsApp
-</button>
-</form>
-
-</div>
-</div>
-
-</div>
-</div>
-</section>
-            <!-- CONTACT SECTION END -->
+<!-- MODAL COMPÉTENCES -->
+<div class="modal-overlay" id="modal-skills">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title"><span class="modal-title-icon">⚡</span> <span data-i18n="card_competences">COMPÉTENCES</span></div>
+      <button class="modal-close" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <h3 data-i18n="sk_lang">LANGAGES</h3>
+      <div class="skill-group">
+        <div class="skill-tags">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C# (en progression)</span>
         </div>
-        <!-- MAIN CONTENT END -->
-    </main>
-    <!-- MAIN END -->
+      </div>
 
-    <footer class="bg-dark text-white text-center py-4">
-<p class="mb-0">© 2026 Cédric Christian NKOU ATEBA - Ingénieur logiciel & Développeur Fullstack</p>
-</footer>
+      <h3 data-i18n="sk_front">FRONT-END</h3>
+      <div class="skill-group">
+        <div class="skill-tags">
+          <span class="skill-tag">React.js</span>
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">Bootstrap</span>
+        </div>
+      </div>
 
-    <script src="./js/script.js"></script>
-    <script src="./js/style-switcher.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+      <h3 data-i18n="sk_back">BACK-END</h3>
+      <div class="skill-group">
+        <div class="skill-tags">
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">API REST</span>
+          <span class="skill-tag">ASP.NET Core</span>
+        </div>
+      </div>
 
-/* Auto dark selon heure */
-const hour = new Date().getHours();
-const body = document.body;
-const toggleBtn = document.getElementById("themeToggle");
+      <h3 data-i18n="sk_db">BASES DE DONNÉES</h3>
+      <div class="skill-group">
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Modélisation relationnelle</span>
+        </div>
+      </div>
 
-if (hour >= 19 || hour <= 6) {
-    body.classList.add("dark-mode");
-    toggleBtn.textContent = "☀️ Mode clair";
-}
+      <h3 data-i18n="sk_tools">OUTILS & MÉTHODES</h3>
+      <div class="skill-group">
+        <div class="skill-tags">
+          <span class="skill-tag">Git / GitHub</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Wamp Server</span>
+          <span class="skill-tag">WordPress</span>
+          <span class="skill-tag">Débogage</span>
+          <span class="skill-tag">Optimisation</span>
+          <span class="skill-tag">MERISE</span>
+          <span class="skill-tag">UML 2.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-toggleBtn.addEventListener("click", () => {
-    body.classList.toggle("dark-mode");
+<!-- MODAL SERVICES -->
+<div class="modal-overlay" id="modal-services">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title"><span class="modal-title-icon">🛠</span> <span data-i18n="card_services">SERVICES</span></div>
+      <button class="modal-close" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <p data-i18n="svc_intro">Solutions techniques sur mesure pour vos projets numériques.</p>
+      <div class="service-grid">
+        <div class="service-item">
+          <i class="fa fa-database"></i>
+          <h4 data-i18n="svc1_title">DATA MANAGEMENT</h4>
+          <p data-i18n="svc1_desc">Webscraping & gestion des données</p>
+        </div>
+        <div class="service-item">
+          <i class="fa fa-project-diagram"></i>
+          <h4 data-i18n="svc2_title">ANALYSE</h4>
+          <p data-i18n="svc2_desc">Utilisation de MERISE & UML 2.0</p>
+        </div>
+        <div class="service-item">
+          <i class="fa fa-code"></i>
+          <h4 data-i18n="svc3_title">DÉVELOPPEMENT WEB</h4>
+          <p data-i18n="svc3_desc">Sites web et applications modernes, sur mesure</p>
+        </div>
+        <div class="service-item">
+          <i class="fa fa-server"></i>
+          <h4 data-i18n="svc4_title">API REST</h4>
+          <p data-i18n="svc4_desc">Architecture et développement d'API performantes</p>
+        </div>
+        <div class="service-item">
+          <i class="fa fa-shield-alt"></i>
+          <h4 data-i18n="svc5_title">SÉCURITÉ</h4>
+          <p data-i18n="svc5_desc">Audit et sécurisation des applications web</p>
+        </div>
+        <div class="service-item">
+          <i class="fa fa-graduation-cap"></i>
+          <h4 data-i18n="svc6_title">FORMATION</h4>
+          <p data-i18n="svc6_desc">Packs vidéos et PDF de formation technique</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    if (body.classList.contains("dark-mode")) {
-        toggleBtn.textContent = "☀️ Mode clair";
-    } else {
-        toggleBtn.textContent = "🌙 Mode sombre";
-    }
-});
+<!-- MODAL PORTFOLIO -->
+<div class="modal-overlay" id="modal-portfolio">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title"><span class="modal-title-icon">🗂</span> <span data-i18n="card_portfolio">PORTFOLIO</span></div>
+      <button class="modal-close" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <h3 data-i18n="port_proj">MES PROJETS</h3>
+      <p data-i18n="port_desc">12 projets réalisés — cliquez sur une image pour en savoir plus.</p>
+      <div class="portfolio-grid" id="portfolioGrid">
+        <!-- generated by JS -->
+      </div>
+      <h3 style="margin-top:24px" data-i18n="port_form">PACK FORMATIONS VIDÉOS & PDF</h3>
+      <div class="portfolio-grid" id="formationsGrid"></div>
+    </div>
+  </div>
+</div>
 
-/* Couleur dynamique */
-document.querySelectorAll(".color-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const color = btn.getAttribute("data-color");
-        document.documentElement.style.setProperty('--main-color', color);
-    });
-});
+<!-- MODAL FORMATIONS -->
+<div class="modal-overlay" id="modal-formations">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title"><span class="modal-title-icon">🎓</span> <span data-i18n="card_formations">FORMATIONS</span></div>
+      <button class="modal-close" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <p data-i18n="form_intro">Contenus pédagogiques vidéos et PDF disponibles pour monter en compétences.</p>
+      <div class="formation-list">
+        <div class="formation-item">
+          <div class="formation-icon">🟨</div>
+          <div class="formation-text"><h4>JavaScript Avancé</h4><p data-i18n="form_js">Pack complet — patterns, async, ES6+</p></div>
+        </div>
+        <div class="formation-item">
+          <div class="formation-icon">⚛️</div>
+          <div class="formation-text"><h4>React.js</h4><p data-i18n="form_react">Hooks, Context API, projets pratiques</p></div>
+        </div>
+        <div class="formation-item">
+          <div class="formation-icon">🟩</div>
+          <div class="formation-text"><h4>Node.js &amp; API REST</h4><p data-i18n="form_node">Backend performant, Express, JWT</p></div>
+        </div>
+        <div class="formation-item">
+          <div class="formation-icon">🐬</div>
+          <div class="formation-text"><h4>MySQL / BDD</h4><p data-i18n="form_db">Modélisation relationnelle, requêtes avancées</p></div>
+        </div>
+        <div class="formation-item">
+          <div class="formation-icon">🐍</div>
+          <div class="formation-text"><h4>Python</h4><p data-i18n="form_python">Scripting, data, webscraping</p></div>
+        </div>
+        <div class="formation-item">
+          <div class="formation-icon">🧩</div>
+          <div class="formation-text"><h4>Pack Wordpress</h4><p data-i18n="form_wp">Thèmes, plugins, déploiement</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-/* Animation apparition */
-const sections = document.querySelectorAll("section");
+<!-- MODAL CONTACT -->
+<div class="modal-overlay" id="modal-contact">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title"><span class="modal-title-icon">📡</span> <span data-i18n="card_contact">CONTACT</span></div>
+      <button class="modal-close" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="contact-grid">
+        <!-- Email form -->
+        <div>
+          <h3 data-i18n="ct_email_title">ENVOYER UN EMAIL</h3>
+          <div class="contact-form-group">
+            <label data-i18n="ct_name">NOM</label>
+            <input type="text" class="matrix-input" id="emailName" data-i18n-placeholder="ct_ph_name" placeholder="Votre nom">
+          </div>
+          <div class="contact-form-group">
+            <label data-i18n="ct_msg">MESSAGE</label>
+            <textarea class="matrix-textarea" id="emailMsg" rows="4" data-i18n-placeholder="ct_ph_msg" placeholder="Votre message"></textarea>
+          </div>
+          <button class="btn-matrix" onclick="sendEmail()" data-i18n="ct_send_email">[ ENVOYER EMAIL ]</button>
+        </div>
+        <!-- WhatsApp + links -->
+        <div>
+          <h3 data-i18n="ct_wa_title">WHATSAPP</h3>
+          <div class="contact-form-group">
+            <label data-i18n="ct_name">NOM</label>
+            <input type="text" class="matrix-input" id="waName" data-i18n-placeholder="ct_ph_name" placeholder="Votre nom">
+          </div>
+          <div class="contact-form-group">
+            <label data-i18n="ct_msg">MESSAGE</label>
+            <textarea class="matrix-textarea" id="waMsg" rows="4" data-i18n-placeholder="ct_ph_msg" placeholder="Votre message"></textarea>
+          </div>
+          <button class="btn-whatsapp" onclick="sendWhatsApp()" data-i18n="ct_send_wa">[ ENVOYER WHATSAPP ]</button>
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add("show-section");
-        }
-    });
-}, { threshold: 0.15 });
+          <h3 style="margin-top:16px" data-i18n="ct_links">LIENS DIRECTS</h3>
+          <div class="contact-direct">
+            <a href="mailto:christian.nkouateba@gmail.com" class="contact-link"><i class="fa fa-envelope"></i> christian.nkouateba@gmail.com</a>
+            <a href="https://github.com/Heustino" target="_blank" class="contact-link"><i class="fab fa-github"></i> github.com/Heustino</a>
+            <a href="https://wa.me/237690634101" target="_blank" class="contact-link"><i class="fab fa-whatsapp"></i> +237 690 634 101</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-sections.forEach(sec => {
-    sec.classList.add("hidden-section");
-    observer.observe(sec);
-});
-
-function sendWhatsApp(event){
-    event.preventDefault();
-
-    const name = document.getElementById("wa_name").value;
-    const message = document.getElementById("wa_message").value;
-
-    const phone = "237690634101"; // ton numéro sans +
-
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent("Nom: " + name + "\nMessage: " + message)}`;
-
-    window.open(url, "_blank");
-}
-
-    </script>
+<!-- ======================= SCRIPTS ======================= -->
+<script src="js/script.js"></script>
 </body>
 </html>
