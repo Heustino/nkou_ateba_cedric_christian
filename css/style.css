@@ -8,6 +8,8 @@
   --border: rgba(0,255,65,0.4);
   --font-mono: 'Share Tech Mono', monospace;
   --font-title: 'Orbitron', monospace;
+  --gold: #FFD700;
+  --gold-glow: rgba(255,215,0,0.5);
 }
 
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -146,7 +148,8 @@ body::after {
 
 .hero-title {
   font-size: clamp(0.75rem, 2vw, 1rem);
-  color: var(--green);
+  /* color: var(--green); */
+  color: gold;
   letter-spacing: 2px;
   margin-bottom: 20px;
   opacity: 0.9;
@@ -249,8 +252,8 @@ body::after {
   font-family: var(--font-title);
   font-size: clamp(0.55rem, 1.5vw, 0.75rem);
   letter-spacing: 3px;
-  color: var(--green);
-  text-shadow: 0 0 8px var(--green-glow);
+  color: var(--gold) !important;
+  text-shadow: 0 0 8px var(--gold-glow) !important;
   position: relative;
   z-index: 1;
 }
@@ -331,8 +334,8 @@ body::after {
 .modal-title {
   font-family: var(--font-title);
   font-size: clamp(0.9rem, 3vw, 1.3rem);
-  color: var(--green);
-  text-shadow: 0 0 12px var(--green-glow);
+  color: var(--gold) !important;
+  text-shadow: 0 0 12px var(--gold-glow) !important;
   letter-spacing: 3px;
   display: flex;
   align-items: center;
@@ -375,12 +378,13 @@ body::after {
 .modal-body h3 {
   font-family: var(--font-title);
   font-size: clamp(0.75rem, 2vw, 0.9rem);
-  color: #fff;
+  color: var(--gold) !important;
   letter-spacing: 2px;
   margin: 20px 0 10px;
   padding-bottom: 6px;
   border-bottom: 1px solid rgba(0,255,65,0.2);
-  text-shadow: 0 0 8px var(--green-glow);
+  text-shadow: 0 0 8px var(--gold-glow) !important;
+  border-bottom-color: rgba(255,215,0,0.2) !important;
 }
 
 .modal-body ul {
@@ -724,3 +728,11 @@ body::after {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #000500; }
 ::-webkit-scrollbar-thumb { background: rgba(0,255,65,0.3); border-radius: 3px; }
+
+#modal-profil .about-text-white {
+  color: #ffffff !important;
+}
+
+#modal-profil .info-label {
+  color: var(--green-dim) !important;
+}
